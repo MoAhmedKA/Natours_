@@ -18,7 +18,7 @@ const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const bookingRouter = require('./routes/bookingRoutes.js');
 const { syncBuiltinESMExports } = require('module');
-
+//Start Express App
 const app = express();
 app.use(cors());
 app.set('view engine', 'pug');

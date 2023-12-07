@@ -55,11 +55,7 @@ app.use(cookieParser());
 //Serving static files//
 
 //test middleware
-app.use((req, res, next) => {
-  req.requestTime = new Date().toISOString();
 
-  next();
-});
 app.use(mongoSanitize());
 app.use(xss());
 app.use(

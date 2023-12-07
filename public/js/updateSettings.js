@@ -7,13 +7,12 @@ export const updateSettings = async (data, type) => {
       method: 'PATCH',
       url:
         type === 'password'
-          ? 'http://localhost:3000/api/v1/users/updatePassword'
-          : 'http://localhost:3000/api/v1/users/updateMe',
+          ? 'api/v1/users/updatePassword'
+          : 'api/v1/users/updateMe',
       data
     });
-    console.log(res.data.status === 'success');
+
     if (res.data.status === 'success') {
-      console.log('nodick');
       showAlert('success', `${type.toUpperCase()} data successfully updated`);
     }
   } catch (err) {

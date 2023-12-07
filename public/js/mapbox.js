@@ -1,10 +1,9 @@
 /* eslint-disable */
 
 export const displayMap = locs => {
-  console.log(locs);
   // Create the map and attach it to the #map
   const map = L.map('map', { zoomControl: false });
-  console.log('lol');
+
   // Add a tile layer to add to our map
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution:
@@ -36,7 +35,7 @@ export const displayMap = locs => {
       })
       .openPopup();
   });
-  console.log(points);
+
   // Set map bounds to include current location
   const bounds = L.latLngBounds(points).pad(0.5);
   map.fitBounds(bounds);

@@ -15,6 +15,7 @@ const bookBtn = document.getElementById('book-tour');
 const logoutBtn = document.querySelector('.nav__el--logout');
 if (bookBtn) {
   bookBtn.addEventListener('click', e => {
+    bookBtn.textContent = 'Processing..';
     e.preventDefault;
     const { tourId } = bookBtn.dataset;
     bookTour(tourId);
@@ -46,7 +47,6 @@ if (formUpdate) {
     form.append('name', document.getElementById('name').value);
     form.append('email', document.getElementById('email').value);
     form.append('photo', document.getElementById('photo').files[0]);
-    console.log(form);
 
     updateSettings(form, 'data');
   });

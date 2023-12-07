@@ -33,7 +33,6 @@ exports.resizeTourImage = catchAsync(async (req, res, next) => {
     .jpeg({ quality: 90 })
     .toFile(`public/img/tours/${req.body.imageCover} `);
 
-  console.log(req.body.images);
   req.body.images = [];
 
   await Promise.all(
@@ -50,7 +49,7 @@ exports.resizeTourImage = catchAsync(async (req, res, next) => {
     })
   );
 
-  // console.log(req.body.images);
+  // (req.body.images);
   next();
 });
 
@@ -88,7 +87,7 @@ exports.aliasTopTours = (req, res, next) => {
 
 exports.getAllTours = factory.getAll(Tour);
 
-// console.log(req.body);
+// (req.body);
 exports.getTour = factory.getOne(Tour, { path: 'reviews' });
 exports.createTour = factory.createOne(Tour);
 exports.updateTour = factory.updateOne(Tour);
@@ -104,7 +103,7 @@ exports.deleteTour = factory.deleteOne(Tour);
 //   });
 // });
 
-//console.log(Tour);
+//(Tour);
 exports.getTourStats = catchAsync(async (req, res, next) => {
   const stats = await Tour.aggregate([
     {

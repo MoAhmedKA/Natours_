@@ -12,7 +12,6 @@ exports.getBooking = factory.getOne(Booking);
 exports.deleteBooking = factory.deleteOne(Booking);
 exports.updateBooking = factory.updateOne(Booking);
 exports.getCheckOutSession = catchAsync(async (req, res, next) => {
-  console.log(process.env.STRIPE_SECRET_KEY);
   const tour = await Tour.findById(req.params.tourID);
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
@@ -50,7 +49,6 @@ exports.createBookingCheckOut = catchAsync(async (req, res, next) => {
 
   const { user, tour, price } = req.query;
 
-  console.log(!user || !tour || !price);
   if (!user || !tour || !price) return next();
   await Booking.create({
     tour,
@@ -58,6 +56,5 @@ exports.createBookingCheckOut = catchAsync(async (req, res, next) => {
     price
   });
   res.redirect(req.originalUrl.split('?')[0]);
-  console.log(req.originalUrl);
   next();
 });

@@ -74,8 +74,6 @@ exports.getAll = model =>
     let query = model.find(JSON.parse(queryStr));
 
     if (req.query.sort) {
-      console.log(req.query);
-      console.log(queryObj);
       const sortBy = req.query.sort.split(',').join(' ');
 
       query = query.sort(sortBy);
@@ -102,7 +100,6 @@ exports.getAll = model =>
     // const features=new APIFeatures(Tour.find(),req.query).filter()
     //     const doc = await features.query  //Tour.find().filter()
 
-    // console.log(doc);
     res.status(200).json({
       status: 'success',
       results: doc.length,

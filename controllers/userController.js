@@ -50,8 +50,6 @@ const filteredObj = (obj, ...allowedfields) => {
     if (allowedfields.includes(el)) newObj[el] = obj[el];
   });
 
-  console.log(newObj);
-
   return newObj;
 };
 exports.getAllUsers = factory.getAll(User);
@@ -80,7 +78,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     new: true,
     runValidators: true
   });
-  console.log(user);
+
   res.status(200).json({
     status: 'success',
     data: {

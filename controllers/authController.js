@@ -20,7 +20,7 @@ const cookieOptions = {
 };
 const createSendToken = function(user, statusCode, res) {
   const token = sign(user._id);
-  console.log(user._id);
+
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
   res.cookie('jwt', token, cookieOptions);
   res.status(statusCode).json({
@@ -51,8 +51,7 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError('please enter a vaild email and password', 400));
   }
   const user = await User.findOne({ email }).select('+password');
-  // console.log(user.correctPassword);
-  // console.log(user);
+
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(
       new AppError('this user doesnt exist, or invaild email/password', 401)
@@ -84,10 +83,6 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer ')
   ) {
     token = req.headers.authorization.split(' ')[1];
-    console.log(
-      req.headers.authorization &&
-        req.headers.authorization.startsWith('Bearer ')
-    );
   } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
   }

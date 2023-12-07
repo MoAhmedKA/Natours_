@@ -132,11 +132,8 @@ tourSchema.pre('save', function(next) {
   //works when using .save(), .create()
   try {
     this.slug = slugify(this.name, { lower: true });
-    console.log('seeeesha', this);
     next();
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 });
 // tourSchema.pre('save', async function(next) {
 //   const guidesPromises = this.guides.map(async el => await User.findById(el));
@@ -159,7 +156,6 @@ tourSchema.pre(/^find/, function(next) {
   next();
 });
 tourSchema.post(/^find/, function(docs, next) {
-  console.log(`${new Date() - this.start}MS`);
   next();
 });
 // tourSchema.pre('aggregate', function(next) {

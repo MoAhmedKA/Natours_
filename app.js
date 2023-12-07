@@ -18,8 +18,12 @@ const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const bookingRouter = require('./routes/bookingRoutes.js');
 const { syncBuiltinESMExports } = require('module');
+const compression = require('compression');
+
 //Start Express App
+
 const app = express();
+app.use(compression());
 app.use(cors());
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));

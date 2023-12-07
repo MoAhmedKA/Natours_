@@ -3,7 +3,6 @@ const catchAsync = require('../catchAsync');
 const factory = require('./handlerFactory');
 
 exports.getAllReviews = catchAsync(async (req, res, next) => {
-  console.log(Review);
   let filter = {};
   if (req.params.tourId) filter = { tour: req.params.tourId };
   const reviews = await Review.find(filter).populate({

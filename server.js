@@ -13,7 +13,7 @@ const DB = process.env.DATABASE.replace(
   process.env.DATABASE_PASSWORD
 );
 mongoose
-  .connect(DB, {
+  .connect(DB, { useNewUrlParser: true ,useUnifiedTopology:true} ,{
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,

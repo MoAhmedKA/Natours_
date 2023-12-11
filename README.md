@@ -1,3 +1,3 @@
 #Natours Application
 
-Built using modern technoglogies: node.js express.js mongoDB,mongoose
+Built using modern technoglogies: node.js express.js mongoDB,mongoose mycock

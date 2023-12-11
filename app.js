@@ -32,11 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Set Sucurity HTTP Header //
 app.use(
   helmet({
-    contentSecurityPolicy: {
-      directives: {
-        "connect-src": ["'self'", " http://127.0.0.1:3000/"],
-      },
-    },
+    contentSecurityPolicy: true,
     
   })
 );

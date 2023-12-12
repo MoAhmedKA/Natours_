@@ -24,9 +24,10 @@ exports.getTourRender = catchAsync(async (req, res, next) => {
   });
 });
 exports.login = (req, res) => {
+  console.log(req.headers)
   res
     .status(200)
-    .set('Content-Security-Policy', "connect-src 'self' http://127.0.0.1:3000/")
+    // .set('Content-Security-Policy', "connect-src 'self' http://127.0.0.1:3000/")
     .render('login', {
       title: 'Log into your account'
     });

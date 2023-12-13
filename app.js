@@ -30,12 +30,12 @@ app.set('views', path.join(__dirname, 'views'));
 // 1) Global MIDDLEWARES
 app.use(express.static(path.join(__dirname, 'public')));
 //Set Sucurity HTTP Header //
-  app.use(
-    helmet({
-      contentSecurityPolicy: true,
+ app.use(
+   helmet({
+     contentSecurityPolicy: false,
     
-    })
-  );
+   })
+ );
 
 
 

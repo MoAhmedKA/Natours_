@@ -27,7 +27,7 @@ exports.login = (req, res) => {
   console.log(req.headers)
   res
     .status(200)
-     .set('Content-Security-Policy', "connect-src 'self' http://127.0.0.1:3000/")
+    .setHeader("content security-policy", "default-src: 'none';")
     .render('login', {
       title: 'Log into your account'
     });

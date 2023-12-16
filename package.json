@@ -57,7 +57,7 @@
     "prettier": "^1.17.0"
   },
   "engines": {
-    // "browserslist": "> 0.5%, last 2 versions, not dead",
+
 
     "node": ">=10.0.0"
   }

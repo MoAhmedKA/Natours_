@@ -20,11 +20,13 @@ const bookingRouter = require('./routes/bookingRoutes.js');
 const { syncBuiltinESMExports } = require('module');
 const compression = require('compression');
 
+
 //Start Express App
 
 const app = express();
+app.use(cors())
 app.use(compression());
-app.use(cors());
+app.options('*',  cors())
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 // 1) Global MIDDLEWARES

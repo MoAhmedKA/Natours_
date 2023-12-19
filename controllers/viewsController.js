@@ -3,6 +3,7 @@ const User = require('../userModel');
 const catchAsync = require('../catchAsync');
 const AppError = require('../appError');
 const Booking = require('../models/bookingsModel');
+const { sign } = require('jsonwebtoken');
 exports.getOverview = catchAsync(async (req, res, next) => {
   const tours = await Tour.find();
 
@@ -24,10 +25,10 @@ exports.getTourRender = catchAsync(async (req, res, next) => {
   });
 });
 exports.login = (req, res) => {
-  console.log(req.headers)
+
   res
     .status(200)
-    .setHeader("content security-policy", "default-src: 'none';")
+    // .setHeader("content security-policy", "default-src: 'none';")
     .render('login', {
       title: 'Log into your account'
     });
@@ -45,3 +46,10 @@ exports.getMybookings = catchAsync(async (req, res, next) => {
     tours
   });
 });
+
+exports.signup = (req, res) => {
+  res.status(200).render('signup', {
+    title:'create your natours account'
+  })
+
+}

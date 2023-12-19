@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 const limiter = rateLimit({
-  max: 10,
+  max: 200,
   windowMs: 60 * 60 * 1000,
   message: 'too many requests from this IP . please try again in 1 hour'
 });

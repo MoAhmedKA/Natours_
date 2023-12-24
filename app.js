@@ -25,6 +25,7 @@ const compression = require('compression');
 //Start Express App
 
 const app = express();
+app.enable('trust proxy')
 app.use(cors())
 app.use(compression());
 app.options('*',  cors())
@@ -55,7 +56,8 @@ if (process.env.NODE_ENV === 'development') {
 //limit requestes from same IP //
 app.use('/api', limiter);
 app.post('/webhook-checkout', express.raw({
-  type:'application/json'
+  type: 'application/json'
+  
 }),bookingController.webhookCheckOut)
 //body parser,reading data from body into req.body//
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));

@@ -16,6 +16,7 @@ const viewsRouter = require('./routes/viewRoutes.js');
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
+const bookingController=require('./controllers/bookingController.js')
 const bookingRouter = require('./routes/bookingRoutes.js');
 const { syncBuiltinESMExports } = require('module');
 const compression = require('compression');
@@ -53,6 +54,9 @@ if (process.env.NODE_ENV === 'development') {
 }
 //limit requestes from same IP //
 app.use('/api', limiter);
+app.post('/webhook-checkout', express.raw({
+  type:'application/json'
+}),bookingController.webhookCheckOut)
 //body parser,reading data from body into req.body//
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(express.json({ limit: '10kb' }));

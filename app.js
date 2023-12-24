@@ -25,7 +25,7 @@ const compression = require('compression');
 //Start Express App
 
 const app = express();
- app.enable('trust proxy')
+ app.enable('trust proxy',100)
 app.use(cors())
 app.use(compression());
 app.options('*',  cors())

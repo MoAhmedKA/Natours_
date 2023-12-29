@@ -1,6 +1,5 @@
-const stripe = require('stripe')(
-  'sk_test_51OIAWQFIeC3jKQHFC3DlTBFUa4pmOuSRu4WweI1bXfLbf8IclvRAReOXxhSXbiwBb55PbUYzwFSK7vc2En3vkxvW00WBRZBgIK'
-);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+  
 const factory = require('./handlerFactory');
 const Tour = require('../models/tourModel');
 const AppError = require('../appError');
@@ -20,7 +19,7 @@ const createBookingCheckOut = async session => {
   
 }
 exports.webhookCheckOut = (req, res,next) => {
-  const signature = req.headers['stripe=signature']
+  const signature = req.headers['stripe-signature']
   let event;
   try {
     event =stripe.webhooks.constructEvent(req.body,signature,process.env.STRIPE_WEBHOOK_SECERT)

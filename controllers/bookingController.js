@@ -1,5 +1,5 @@
 const stripe = require('stripe')(
-  process.env.STRIPE_SECRET_KEY
+  'sk_test_51OIAWQFIeC3jKQHFC3DlTBFUa4pmOuSRu4WweI1bXfLbf8IclvRAReOXxhSXbiwBb55PbUYzwFSK7vc2En3vkxvW00WBRZBgIK'
 );
 const factory = require('./handlerFactory');
 const Tour = require('../models/tourModel');
@@ -43,9 +43,9 @@ exports.getCheckOutSession = catchAsync(async (req, res, next) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     mode: 'payment',
-    success_url: `${req.protocol}://${req.get('host')} `,
+    success_url: `${req.protocol}://${req.get('host')}/my-bookings`,
 
-    cancel_url: `${req.protocol}://${req.get('host')}/my-bookings`,
+    cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
     customer_email: req.user.email,
     client_reference_id: req.params.tourID,
     line_items: [
@@ -63,7 +63,8 @@ exports.getCheckOutSession = catchAsync(async (req, res, next) => {
       }
     ]
   });
-
+  console.log(session.success_url)
+  console.log(session)
   res.status(200).json({
     status: 'success',
     session

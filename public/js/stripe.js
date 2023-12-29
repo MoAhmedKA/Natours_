@@ -9,16 +9,22 @@ export const bookTour = async tourId => {
     );
     const session = await axios(`/api/v1/bookings/checkout-session/${tourId}`);
     if (session.data.status === 'success') {
+      console.log(process.env.STRIPE_WEBHOOK_SECERT)
       showAlert(
         'success',
         'Redirecting To CheckOut page!. (this may take a while)'
       );
+
     }
     if (session) {
-      window.location.replace(session.data.session.url);
+      await stripe.redirectToCheckOut({ sessionId: session.data.session.id });
+   
     }
-    // await stripe.redirectToCheckOut({ sessionId: session.data.session.id });
+    
+     
   } catch (err) {
-    showAlert('error', err);
+ 
+    showAlert('error', err)
+   
   }
 };
